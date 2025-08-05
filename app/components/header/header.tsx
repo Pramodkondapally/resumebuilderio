@@ -12,7 +12,7 @@ export default function Header() {
       {/* Left: Logo */}
       <div className="flex items-center space-x-2">
         <Image src="/logo.png" alt="Logo" width={40} height={40} />
-        <span className="text-lg font-semibold text-gray-800">ResumeBuilder</span>
+        <span className="text-lg font-semibold text-gray-800 font-sans">ResumeBuilder</span>
       </div>
 
       {/* Center: College Name */}
@@ -30,7 +30,7 @@ export default function Header() {
           height={36}
           className="rounded-full border border-gray-300"
         />
-        <button className="text-red-500 hover:underline text-sm">Logout</button>
+        <button className="text-red-500 hover:underline text-sm font-sans">Logout</button>
       </div>
     </header>
   );
