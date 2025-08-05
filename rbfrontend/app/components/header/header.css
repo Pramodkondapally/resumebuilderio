@@ -1,0 +1,6 @@
+.Rb-header-bar {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 50; /* Or higher depending on your layout */
+}
