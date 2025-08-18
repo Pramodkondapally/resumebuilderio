@@ -1,10 +1,17 @@
 "use client";
 import { useState, ReactNode } from "react";
 import ClassicResume from "./templatesComponents/ClassicResume";
+import GraphicTemplate from "./templatesComponents/GraphicResume";
+import MarketingResume from "./templatesComponents/MarketingResume";
+import ResumeME from "./templatesComponents/PersonalResume";
+import WebDeveloperTemplate from "./templatesComponents/WebDeveloper";
 import { Eye, Plus, X } from "lucide-react";
 
 // Template type
 type Template = {
+
+
+
   id: number;
   name: string;
   previewImage: string;
@@ -12,17 +19,17 @@ type Template = {
 };
 
 const templates: Template[] = [
-  { id: 1, name: "Modern", previewImage: "/templates/modern.png" },
+  { id: 1, name: "Modern", previewImage: "/templates/modern.png", component: <GraphicTemplate /> },
   {
     id: 2,
     name: "Classic",
     previewImage: "/templates/classic.png",
     component: <ClassicResume />,
   },
-  { id: 3, name: "Minimal", previewImage: "/templates/minimal.png" },
-  { id: 4, name: "Professional", previewImage: "/templates/professional.png" },
-  { id: 5, name: "Fresher", previewImage: "/templates/Fresher.png" },
-  { id: 6, name: "Experienced", previewImage: "/templates/Experieanced.png" },
+  { id: 3, name: "Minimal", previewImage: "/templates/minimal.png", component: <GraphicTemplate /> },
+  { id: 4, name: "Professional", previewImage: "/templates/professional.png", component: <MarketingResume /> },
+  { id: 5, name: "Fresher", previewImage: "/templates/Fresher.png", component: <ResumeME /> },
+  { id: 6, name: "Experienced", previewImage: "/templates/Experieanced.png", component: <WebDeveloperTemplate /> },
 ];
 
 export default function TemplatesPage() {
