@@ -24,7 +24,7 @@ export default function PrivateRootLayout({
 
     <div className="w-2/3 relative">
       {/* Header height: 64px → subtract from total height */}
-      <main className="absolute top-[64px] bottom-0 left-0 right-0 p-2 md:p-4 overflow-y-auto">
+      <main className=" p-2  overflow-y-auto">
         {children}
       </main>
     </div>
