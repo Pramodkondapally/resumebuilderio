@@ -13,7 +13,7 @@ export default function GraphicTemplate () {
           <p className="text-sm sm:text-base font-m mt-1">Graphic Designer</p>
 
           {/* Contact bar (full-screen width, left-aligned, with icons) */}
-          <div className="relative left-1/2 -translate-x-1/2 w-screen bg-[#b7cdd1] mt-4 py-3">
+          <div className="relative left-1/2 -translate-x-1/2 w-full bg-[#b7cdd1] mt-4 py-3">
             {/* Match the page's left padding so it lines up with the header */}
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6 md:px-12">
               <div className="

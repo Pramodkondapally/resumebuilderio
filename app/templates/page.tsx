@@ -24,7 +24,7 @@ const templates: Template[] = [
     id: 2,
     name: "Classic",
     previewImage: "/templates/classic.png",
-    component: <ClassicResume />,
+    component: <GraphicTemplate />,
   },
   { id: 3, name: "Minimal", previewImage: "/templates/minimal.png", component: <GraphicTemplate /> },
   { id: 4, name: "Professional", previewImage: "/templates/professional.png", component: <MarketingResume /> },

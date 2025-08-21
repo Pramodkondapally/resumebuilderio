@@ -22,16 +22,14 @@ export default function PrivateRootLayout({
       <TemplateResumes />
     </div>
 
-    <div className="w-2/3 relative">
+    <div className="w-full relative ">
       {/* Header height: 64px → subtract from total height */}
-      <main className=" p-2  overflow-y-auto">
+      <main className=" p-4 overflow-y-auto">
         {children}
       </main>
     </div>
 
-    <div className="w-1/3 border-l border-gray-200 bg-[#F0F1F5]">
-      <PreviewBox />
-    </div>
+   
   </div>
 </section>
 

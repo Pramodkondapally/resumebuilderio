@@ -1,68 +1,77 @@
 "use client";
-import { useState } from "react";
-import Accordion from "./eComponents/Accordions/Accord";
-import { Loader } from "@/app/components/ui/loader";
-
+import PreviewBox from "./eComponents/previewBox";
 export default function ResumeEditor() {
-  const [sending, setSending] = useState(false);
-
-  const [resume, setResume] = useState({
-    persondetails: {
-      name: "name",
-      address: "address",
-      phone: "01234567890",
-      email: "example@gmail.com",
-      portfoliolink: "www.example.com",
-    },
-    summary: { summeryText: "something about you" },
-    workExperience: {
-      rolewithCompanyNmae: "ex: software Engineer at SunTechnologies",
-      yeartoyear: "Mar 2021 - Dec 2022",
-      jd: "Implemented cost-effective solutions...",
-      jdlineOne: "Streamlined workflows...",
-      jdLineTwo: "Delivered projects on time",
-    },
-    Education: {
-      Department: "computer science",
-      yeartoyear: "Mar 2021 - Dec 2022",
-      University: "svpp",
-      aboutLineOne: "Specialization in AI",
-      aboutLineTwo: "Thesis on ML",
-    },
-    additionalinfor: {
-      technicalskils: "python and java",
-      Languages: "english",
-      certifications: "certified developer",
-      awardsoractivities: "swimming",
-    },
-  });
-
-  // Helper for updating nested fields
-  const updateField = (section: string, field: string, value: string) => {
-    setResume((prev) => ({
-      ...prev,
-      [section]: {
-        ...prev[section as keyof typeof prev],
-        [field]: value,
-      },
-    }));
-  };
-
-  // Handle update button click
-  const handleUpdate = () => {
-    setSending(true);
-    console.log("Updated Resume Data:", resume);
-
-    // simulate API or save action
-    setTimeout(() => {
-      setSending(false);
-    }, 2000);
-  };
-
+  
   return (
     <>
-      <div className="p-2 h-full overflow-y-auto">
-        <Accordion
+     <div className="w-full border-l border-gray-200 bg-[#F0F1F5]">
+      <PreviewBox />
+    </div>
+      
+    </>
+  );
+}
+
+// import { useState } from "react";
+// import Accordion from "./eComponents/Accordions/Accord";
+// import { Loader } from "@/app/components/ui/loader";
+// const [sending, setSending] = useState(false);
+
+  // const [resume, setResume] = useState({
+  //   persondetails: {
+  //     name: "name",
+  //     address: "address",
+  //     phone: "01234567890",
+  //     email: "example@gmail.com",
+  //     portfoliolink: "www.example.com",
+  //   },
+  //   summary: { summeryText: "something about you" },
+  //   workExperience: {
+  //     rolewithCompanyNmae: "ex: software Engineer at SunTechnologies",
+  //     yeartoyear: "Mar 2021 - Dec 2022",
+  //     jd: "Implemented cost-effective solutions...",
+  //     jdlineOne: "Streamlined workflows...",
+  //     jdLineTwo: "Delivered projects on time",
+  //   },
+  //   Education: {
+  //     Department: "computer science",
+  //     yeartoyear: "Mar 2021 - Dec 2022",
+  //     University: "svpp",
+  //     aboutLineOne: "Specialization in AI",
+  //     aboutLineTwo: "Thesis on ML",
+  //   },
+  //   additionalinfor: {
+  //     technicalskils: "python and java",
+  //     Languages: "english",
+  //     certifications: "certified developer",
+  //     awardsoractivities: "swimming",
+  //   },
+  // });
+
+  // Helper for updating nested fields
+  // const updateField = (section: string, field: string, value: string) => {
+  //   setResume((prev) => ({
+  //     ...prev,
+  //     [section]: {
+  //       ...prev[section as keyof typeof prev],
+  //       [field]: value,
+  //     },
+  //   }));
+  // };
+
+  // Handle update button click
+  // const handleUpdate = () => {
+  //   setSending(true);
+  //   console.log("Updated Resume Data:", resume);
+
+  //   // simulate API or save action
+  //   setTimeout(() => {
+  //     setSending(false);
+  //   }, 2000);
+  // };
+
+{/* <div className="p-2 h-full overflow-y-auto"> */}
+        {/* <Accordion
           items={[
             {
               title: "Personal Details",
@@ -162,10 +171,10 @@ export default function ResumeEditor() {
               ),
             },
           ]}
-        />
-      </div>
+        /> */}
+      {/* </div> */}
 
-      <div className="pl-4">
+      {/* <div className="pl-4">
         <button
           disabled={sending}
           onClick={handleUpdate}
@@ -179,7 +188,4 @@ export default function ResumeEditor() {
             "Update"
           )}
         </button>
-      </div>
-    </>
-  );
-}
+      </div> */}

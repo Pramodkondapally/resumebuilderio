@@ -1,44 +1,46 @@
 "use client";
-import React, { useState, ReactNode } from "react";
+import React, { useState, useEffect } from "react";
 import ClassicResume from "@/app/templates/templatesComponents/ClassicResume";
-// Template type
-type Template = {
-  id: number;
-  name: string;
-  previewImage: string;
-  component?: ReactNode;
-};
+import { resumeData as defaultData } from "@/app/templates/templatesComponents/data/classicData";
 
 export default function PreviewBox() {
-  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
+  const [selectedTemplate, setSelectedTemplate] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [resumeData, setResumeData] = useState(defaultData);
 
-  // Example template (you can replace component with your ClassicResume)
-  const template: Template = {
-    id: 1,
-    name: "Classic Resume",
-    previewImage: "/preview/classic.png",
-    component: <div className="w-full h-[600px] bg-gray-100"> <ClassicResume /> </div>,
-  };
+  // Load from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem("resumeData");
+    if (saved) setResumeData(JSON.parse(saved));
+  }, []);
 
-  const openPreview = (template: Template) => {
-    setSelectedTemplate(template);
-  };
-
-  const closePreview = () => {
-    setSelectedTemplate(null);
-  };
+  // Auto-save to localStorage
+  useEffect(() => {
+    localStorage.setItem("resumeData", JSON.stringify(resumeData));
+  }, [resumeData]);
 
   return (
     <>
       {/* Main Section */}
-      <section className="bg-white w-full h-screen hidden md:flex lg:flex items-center justify-center">
-        {/* Clickable Area to open modal */}
+      <section className="bg-white w-full h-screen hidden md:flex lg:flex items-center justify-center p-4">
         <div
-          onClick={() => openPreview(template)}
-          className="overflow-auto shadow-md rounded-md w-[80%] h-[80%] p-4 duration-300 transition-all ease-in-out hover:bg-zinc-50 hover:scale-[1.02] cursor-pointer"
+          onClick={() => setSelectedTemplate(true)}
+          className="overflow-auto shadow-md w-[100%] h-[90%] rounded-3xl p-4 cursor-pointer hover:bg-zinc-50 hover:scale-[1.02] transition-all relative"
         >
-            <ClassicResume />
-          
+          {/* Floating Edit Button */}
+            <button
+              onClick={() => setEditMode(!editMode)}
+              className="absolute top-6 left-6 bg-black text-white px-4 py-2 rounded-full shadow-md hover:bg-purple-700 cursor-pointer" style={{
+                fontSize: "12px"
+              }}
+            >
+              {editMode ? "Save" : "Edit"}
+            </button>
+          <ClassicResume
+            data={resumeData}
+            editMode={editMode}
+            setResumeData={setResumeData}
+          />
         </div>
       </section>
 
@@ -48,29 +50,25 @@ export default function PreviewBox() {
           <div className="bg-white rounded-4xl shadow-lg p-8 w-[80%] relative">
             {/* Close button */}
             <button
-              onClick={closePreview}
-              className="absolute top-6 right-6 text-gray-600 hover:text-gray-800 cursor-pointer duration-300 transition-all ease-in-out hover:bg-zinc-50 hover:scale-[1.02]"
+              onClick={() => setSelectedTemplate(false)}
+              className="absolute top-6 right-6 text-gray-600 hover:text-gray-800 cursor-pointer"
             >
               ✕
             </button>
 
-            <h2 className="text-xl font-semibold mb-4">
-              {selectedTemplate.name} Preview
-            </h2>
+            
+
+            <h2 className="text-xl font-semibold mb-4">Classic Resume Preview</h2>
 
             <div className="overflow-auto max-h-[80vh] border border-gray-200 p-4 rounded-2xl">
-              {selectedTemplate.component ? (
-                selectedTemplate.component
-              ) : (
-                <img
-                  src={selectedTemplate.previewImage}
-                  alt={selectedTemplate.name}
-                  className="w-full"
-                />
-              )}
+              <ClassicResume
+                data={resumeData}
+                editMode={editMode}
+                setResumeData={setResumeData}
+              />
             </div>
 
-            <button className="bg-black rounded-full px-4 py-2 text-white hover:text-black mt-2 cursor-pointer duration-300 transition-all ease-in-out hover:bg-zinc-50 hover:scale-[1.02]">
+            <button className="bg-black rounded-full px-4 py-2 text-white mt-2 hover:bg-gray-800">
               Download Now
             </button>
           </div>
