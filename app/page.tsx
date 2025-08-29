@@ -1,12 +1,12 @@
 "use client";
 
 import DashboardContent from "./components/dashboard/DashboardContent";
-import { auth } from "@/lib/firebase";
+// import { auth } from "@/lib/firebase";
 import { Loader } from "@/app/components/ui/loader";
 import ChatWindow from "@/app/components/ui/ChatWindow"
-if (auth.currentUser) {
-  console.log("Logged in as:", auth.currentUser.email);
-}
+// if (auth.currentUser) {
+//   console.log("Logged in as:", auth.currentUser.email);
+// }
 
 
 export default function Home() {
