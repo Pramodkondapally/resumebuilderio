@@ -12,16 +12,23 @@ export default function ClassicResume({
   setResumeData,
 }: ClassicResumeProps) {
   const handleChange = (path: string, value: string) => {
-    if (!setResumeData) return;
-    setResumeData((prev: ResumeData) => {
-      const newData: ResumeData = structuredClone(prev); // deep copy
-      const keys = path.split(".");
-      let obj: any = newData;
-      for (let i = 0; i < keys.length - 1; i++) obj = obj[keys[i]];
-      obj[keys[keys.length - 1]] = value;
-      return newData;
-    });
-  };
+  if (!setResumeData) return;
+
+  setResumeData((prev: ResumeData) => {
+    const newData: ResumeData = structuredClone(prev); // deep copy
+    const keys = path.split(".");
+
+    let obj: Record<string, unknown> = newData as unknown as Record<string, unknown>;
+
+    for (let i = 0; i < keys.length - 1; i++) {
+      obj = obj[keys[i]] as Record<string, unknown>;
+    }
+
+    obj[keys[keys.length - 1]] = value;
+    return newData;
+  });
+};
+
 
   // Add & Remove helpers
   const addWork = () => {
