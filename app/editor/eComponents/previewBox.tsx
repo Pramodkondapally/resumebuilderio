@@ -2,17 +2,21 @@
 import React, { useState, useEffect } from "react";
 import ClassicResume from "@/app/templates/templatesComponents/ClassicResume";
 import { resumeData as defaultData } from "@/app/templates/templatesComponents/data/classicData";
+import ResumePDF from "../eComponents/ResumePDF"; 
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 export default function PreviewBox() {
   const [selectedTemplate, setSelectedTemplate] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [resumeData, setResumeData] = useState(defaultData);
 
+
   // Load from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("resumeData");
     if (saved) setResumeData(JSON.parse(saved));
   }, []);
+   
 
   // Auto-save to localStorage
   useEffect(() => {
@@ -25,7 +29,7 @@ export default function PreviewBox() {
       <section className="bg-white w-full h-screen hidden md:flex lg:flex items-center justify-center p-4">
         <div
           onClick={() => setSelectedTemplate(true)}
-          className="overflow-auto shadow-md w-[100%] h-[90%] rounded-3xl p-4 cursor-pointer hover:bg-zinc-50 hover:scale-[1.02] transition-all relative"
+          className="overflow-auto shadow-md w-[100%] h-[90%] rounded-3xl p-4 cursor-pointer hover:bg-[#fafafa] hover:scale-[1.02] transition-all relative"
         >
           {/* Floating Edit Button */}
             <button
@@ -60,17 +64,25 @@ export default function PreviewBox() {
 
             <h2 className="text-xl font-semibold mb-4">Classic Resume Preview</h2>
 
-            <div className="overflow-auto max-h-[80vh] border border-gray-200 p-4 rounded-2xl">
+            <div className="overflow-auto max-h-[80vh] border border-gray-200 p-4 rounded-2xl " >
               <ClassicResume
+              
                 data={resumeData}
                 editMode={editMode}
                 setResumeData={setResumeData}
               />
             </div>
 
-            <button className="bg-black rounded-full px-4 py-2 text-white mt-2 hover:bg-gray-800">
-              Download Now
-            </button>
+            <PDFDownloadLink
+              document={<ResumePDF data={resumeData} />}
+              fileName="resume.pdf"
+            >
+              {({ loading }) => (
+                <button className="bg-black rounded-full px-4 py-2 text-white mt-2 hover:bg-gray-800 cursor-pointer">
+                  {loading ? "Preparing..." : "Download Now"}
+                </button>
+              )}
+            </PDFDownloadLink>
           </div>
         </div>
       )}
